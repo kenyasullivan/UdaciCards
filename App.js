@@ -6,6 +6,7 @@ import reducer from "./reducers";
 import { Constants } from "expo";
 import { blue } from "./utils/colors";
 import Header from "./components/Header";
+import DeckList from "./components/DeckList";
 
 function UdaciStatusBar({ backgroundColor, ...props }) {
   return (
@@ -18,10 +19,13 @@ function UdaciStatusBar({ backgroundColor, ...props }) {
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <UdaciStatusBar backgroundColor={blue} barStyle="light-content" />
-        <Header headerText={"UdaciCards"} />
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }}>
+          <UdaciStatusBar backgroundColor={blue} barStyle="light-content" />
+          <Header headerText={"UdaciCards"} />
+          <DeckList />
+        </View>
+      </Provider>
     );
   }
 }
