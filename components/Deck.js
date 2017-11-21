@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     borderWidth: 1,
-    borderRadius: 6,
-    borderColor: "#ddd"
+    borderRadius: 4,
+    borderColor: "#DDD"
   },
   card: {
     backgroundColor: "#0188D0",
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
   },
   cardMeta: {
     fontWeight: "600",
-    marginTop: 10
+    marginTop: 10,
+    marginLeft: 10
   }
 });
 export default Deck;
