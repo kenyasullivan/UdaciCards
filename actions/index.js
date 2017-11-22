@@ -1,5 +1,3 @@
-import { saveDeckTitle } from "../utils/api";
-
 export const ADD_DECK = "ADD_DECK";
 export const RECEIVE_DECK_LIST = "RECEIVE_DECK_LIST";
 export const ADD_CARD = "ADD_CARD";
