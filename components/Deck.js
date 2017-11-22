@@ -2,12 +2,12 @@ import React from "react";
 import { Text, View, StyleSheet, Dimensions } from "react-native";
 import { blue } from "../utils/colors";
 
-const Deck = () => {
+const Deck = props => {
   return (
     <View style={styles.container}>
       <View style={styles.card} />
       <View>
-        <Text style={styles.cardMeta}>CardTitle (CardCount)</Text>
+        <Text style={styles.cardMeta}>{props.deck.title}</Text>
       </View>
     </View>
   );

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Alert, Text } from "react-native";
+import { Alert, Text, View } from "react-native";
+import Button from "./Button";
 
 class CreateDeck extends Component {
   state = {
@@ -7,7 +8,12 @@ class CreateDeck extends Component {
   };
 
   render() {
-    return <Text> Create Deck Page </Text>;
+    return (
+      <View>
+        <Text> Create Deck Page </Text>
+        <Button />
+      </View>
+    );
   }
 }
 

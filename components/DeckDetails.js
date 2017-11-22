@@ -1,10 +1,99 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { connect } from "react-redux";
+import { white, blue, darkgray, lightgray, lightblue } from "../utils/colors";
+import Deck from "./Deck";
 
 class DeckDetails extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.state.params.title
+    };
+  };
+
   render() {
-    return <Text>Deck Details Page</Text>;
+    return (
+      <View style={styles.container}>
+        <View style={styles.cardTitleContainer}>
+          <Text style={styles.cardTextMain}>{this.props.deck.title}</Text>
+          <Text> 0 Cards</Text>
+        </View>
+        <View />
+        <View style={styles.primaryButton}>
+          <Text style={styles.primaryButtonText}> Add A Card </Text>
+        </View>
+        <View style={styles.secondaryButton}>
+          <Text style={styles.secondaryButtonText}> Start Quiz</Text>
+        </View>
+      </View>
+    );
   }
 }
 
-export default DeckDetails;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff"
+  },
+  cardTitleContainer: {
+    marginBottom: 50,
+    alignItems: "center"
+  },
+  cardTextMain: {
+    fontSize: 20,
+    fontWeight: "700"
+  },
+  cardCountText: {},
+  primaryButton: {
+    borderRadius: 5,
+    height: 50,
+    width: 150,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#0188D0",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 20,
+    paddingRight: 20,
+    margin: 10
+  },
+  primaryButtonText: {
+    alignSelf: "center",
+    color: "#0188D0",
+    fontSize: 16,
+    fontWeight: "600"
+  },
+  secondaryButton: {
+    borderRadius: 5,
+    height: 50,
+    width: 150,
+    backgroundColor: "#0188D0",
+    borderWidth: 1,
+    borderColor: "#0188D0",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 20,
+    paddingRight: 20,
+    margin: 10
+  },
+  secondaryButtonText: {
+    alignSelf: "center",
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600"
+  }
+});
+
+function mapStateToProps(decks, { navigation }) {
+  const { title } = navigation.state.params;
+  return {
+    deck: decks[title]
+  };
+}
+
+export default connect(mapStateToProps)(DeckDetails);
