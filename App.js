@@ -70,7 +70,7 @@ const Tabs = TabNavigator(
 );
 
 const MainNavigator = StackNavigator({
-  Decks: {
+  Home: {
     screen: Tabs
   },
   DeckDetails: {

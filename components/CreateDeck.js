@@ -11,11 +11,13 @@ import {
 import { connect } from "react-redux";
 import { NavigationActions } from "react-navigation";
 import { addDeck } from "../actions";
+import { saveDeckTitle } from "../utils/api";
 import { blue, white, lightgray } from "../utils/colors";
 
 class CreateDeck extends Component {
   state = {
-    title: ""
+    title: "",
+    questions: []
   };
 
   onSubmit = () => {
@@ -30,7 +32,19 @@ class CreateDeck extends Component {
       return;
     }
     this.props.addDeck(title);
-    this.props.navigation.navigate("DeckDetail", { title });
+    saveDeckTitle(title);
+
+    const resetAction = NavigationActions.reset({
+      index: 1,
+      actions: [
+        NavigationActions.navigate({ routeName: "Home" }),
+        NavigationActions.navigate({
+          routeName: "DeckDetails",
+          params: { title }
+        })
+      ]
+    });
+    this.props.navigation.dispatch(resetAction);
   };
 
   handleChangeText = typedText => {
@@ -46,6 +60,7 @@ class CreateDeck extends Component {
           style={styles.input}
           placeholder="Enter your deck title"
           onChangeText={this.handleChangeText}
+          value={this.state.title}
         />
         {/* <Text style={{ padding: 20 }}>You typed: {this.state.title}</Text> */}
         <View style={styles.secondaryButton}>
@@ -73,7 +88,7 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 20,
     padding: 10,
-    height: 40,
+    height: 45,
     borderColor: lightgray,
     borderWidth: 1,
     borderRadius: Platform.OS === "ios" ? 6 : 2,

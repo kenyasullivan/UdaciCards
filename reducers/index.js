@@ -1,33 +1,6 @@
 import { ADD_DECK, RECEIVE_DECK_LIST, ADD_CARD } from "../actions";
-import data from "./mockdata.json";
 
-const INITIAL_STATE = {
-  " React": {
-    "  title": "React",
-    " questions": [
-      {
-        " question": "What is React?",
-        " answer": "A library for managing user interfaces"
-      },
-      {
-        " question": "Where do you make Ajax requests in React?",
-        " answer": "The componentDidMount lifecycle event"
-      }
-    ]
-  },
-  " JavaScript": {
-    title: "JavaScript",
-    " questions": [
-      {
-        question: "What is a closure?",
-        " answer":
-          "The combination of a function and the lexical environment within which that function was declared."
-      }
-    ]
-  }
-};
-
-function decks(state = INITIAL_STATE, action) {
+function decks(state = {}, action) {
   switch (action.type) {
     case RECEIVE_DECK_LIST:
       return {
@@ -40,7 +13,7 @@ function decks(state = INITIAL_STATE, action) {
         ...state,
         [action.title]: {
           title: action.title,
-          question: []
+          questions: []
         }
       };
     case ADD_CARD:
@@ -48,7 +21,7 @@ function decks(state = INITIAL_STATE, action) {
         ...state,
         [action.title]: {
           ...action[action.title],
-          question: [...state[action.title].cards, action.card]
+          questions: [...state[action.title].cards, action.card]
         }
       };
     default:

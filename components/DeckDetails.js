@@ -18,7 +18,7 @@ class DeckDetails extends Component {
       <View style={styles.container}>
         <View style={styles.cardTitleContainer}>
           <Text style={styles.cardTextMain}>{this.props.deck.title}</Text>
-          <Text> 0 Cards</Text>
+          <Text> {deck.questions.length} Cards</Text>
         </View>
         <View />
         <View style={styles.primaryButton}>
@@ -97,8 +97,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(decks, { navigation }) {
   const { title } = navigation.state.params;
   return {
-    deck: decks[title],
-    decks
+    deck: decks[title]
   };
 }
 

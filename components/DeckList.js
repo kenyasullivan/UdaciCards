@@ -32,13 +32,13 @@ class DeckList extends Component {
 
     return (
       <ScrollView style={{ backgroundColor: "white" }}>
-        {Object.keys(decks).map(key => {
-          const deck = this.props.decks[key];
+        {Object.keys(decks).map(title => {
+          const deck = this.props.decks[title];
           return (
-            <View key={key}>
+            <View key={title}>
               <TouchableOpacity
                 onPress={() =>
-                  this.props.navigation.navigate("DeckDetails", { title: key })}
+                  this.props.navigation.navigate("DeckDetails", { title })}
               >
                 <Deck deck={deck} />
               </TouchableOpacity>
@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
   emptyListContainer: {
     flex: 1,
     alignItems: "center",
-    padding: 10,
-    justifyContent: "center"
+    padding: 20,
+    justifyContent: "center",
+    backgroundColor: "white"
   },
   emptyListText: {
     fontSize: 20
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = decks => {
+  console.log(decks);
   return {
     decks
   };
