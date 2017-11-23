@@ -19,18 +19,13 @@ class DeckList extends Component {
 
   render() {
     const { decks } = this.props;
-    // console.log(this.props);
+
     if (Object.keys(decks).length === 0) {
       return (
-        <View>
-          <Text>
-            Uh oh! You do not have any flashcards. Get started below.{" "}
+        <View style={styles.emptyListContainer}>
+          <Text style={styles.emptyListText}>
+            Uh oh! You do not have any flashcards. Add a Deck below.{" "}
           </Text>
-          {/* <PrimaryButton
-        onPress={() => this.props.navigation.navigate('CreateDeck')}
-      >
-        <PrimaryButtonText>Create your first deck</PrimaryButtonText>
-      </PrimaryButton> */}
         </View>
       );
     }
@@ -38,9 +33,6 @@ class DeckList extends Component {
     return (
       <ScrollView style={{ backgroundColor: "white" }}>
         {Object.keys(decks).map(key => {
-          {
-            /* const { title, questions } = decks[key]; */
-          }
           const deck = this.props.decks[key];
           return (
             <View key={key}>
@@ -57,6 +49,18 @@ class DeckList extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  emptyListContainer: {
+    flex: 1,
+    alignItems: "center",
+    padding: 10,
+    justifyContent: "center"
+  },
+  emptyListText: {
+    fontSize: 20
+  }
+});
 
 const mapStateToProps = decks => {
   return {

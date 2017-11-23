@@ -1,20 +1,109 @@
 import React, { Component } from "react";
-import { Alert, Text, View } from "react-native";
-import Button from "./Button";
+import {
+  Alert,
+  TextInput,
+  Text,
+  View,
+  StyleSheet,
+  Platform,
+  TouchableOpacity
+} from "react-native";
+import { connect } from "react-redux";
+import { NavigationActions } from "react-navigation";
+import { addDeck } from "../actions";
+import { blue, white, lightgray } from "../utils/colors";
 
 class CreateDeck extends Component {
   state = {
     title: ""
   };
 
+  onSubmit = () => {
+    const { title } = this.state;
+
+    if (!title) {
+      Alert.alert("Deck title is required.");
+      return;
+    }
+    if (this.props.decks[title]) {
+      Alert.alert("A deck with that name already exists.");
+      return;
+    }
+    this.props.addDeck(title);
+    this.props.navigation.navigate("DeckDetail", { title });
+  };
+
+  handleChangeText = typedText => {
+    this.setState({ title: typedText });
+  };
+
   render() {
+    const { title } = this.state;
     return (
-      <View>
-        <Text> Create Deck Page </Text>
-        <Button />
+      <View style={styles.container}>
+        <Text style={styles.title}> What is the title for your new deck?</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your deck title"
+          onChangeText={this.handleChangeText}
+        />
+        {/* <Text style={{ padding: 20 }}>You typed: {this.state.title}</Text> */}
+        <View style={styles.secondaryButton}>
+          <TouchableOpacity onPress={this.onSubmit}>
+            <Text style={styles.secondaryButtonText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
 
-export default CreateDeck;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "white"
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "500",
+    padding: 20,
+    marginTop: 20
+  },
+  input: {
+    fontSize: 20,
+    padding: 10,
+    height: 40,
+    borderColor: lightgray,
+    borderWidth: 1,
+    borderRadius: Platform.OS === "ios" ? 6 : 2,
+    marginLeft: 20,
+    marginRight: 20
+  },
+
+  secondaryButton: {
+    borderRadius: 5,
+    height: 50,
+    width: 150,
+    backgroundColor: "#0188D0",
+    borderWidth: 1,
+    borderColor: "#0188D0",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 20,
+    paddingRight: 20,
+    margin: 20
+  },
+  secondaryButtonText: {
+    alignSelf: "center",
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600"
+  }
+});
+
+function mapStateToProps(decks) {
+  return { decks };
+}
+export default connect(mapStateToProps, { addDeck })(CreateDeck);

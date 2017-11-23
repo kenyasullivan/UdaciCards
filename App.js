@@ -13,6 +13,7 @@ import DeckList from "./components/DeckList";
 import CreateDeck from "./components/CreateDeck";
 import DeckDetails from "./components/DeckDetails";
 import CreateCard from "./components/CreateCard";
+import Quiz from "./components/Quiz";
 
 function UdaciStatusBar({ backgroundColor, ...props }) {
   return (
@@ -45,7 +46,7 @@ const Tabs = TabNavigator(
   },
   {
     navigationOptions: {
-      title: "UdaciCards",
+      title: "Decks",
       headerStyle: {
         backgroundColor: blue
       },
@@ -84,6 +85,15 @@ const MainNavigator = StackNavigator({
   },
   CreateCard: {
     screen: CreateCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

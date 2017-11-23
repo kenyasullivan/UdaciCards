@@ -40,7 +40,7 @@ function decks(state = INITIAL_STATE, action) {
         ...state,
         [action.title]: {
           title: action.title,
-          cards: []
+          question: []
         }
       };
     case ADD_CARD:
@@ -48,7 +48,7 @@ function decks(state = INITIAL_STATE, action) {
         ...state,
         [action.title]: {
           ...action[action.title],
-          cards: [...state[action.title].cards, action.card]
+          question: [...state[action.title].cards, action.card]
         }
       };
     default:

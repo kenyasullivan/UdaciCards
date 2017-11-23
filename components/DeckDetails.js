@@ -12,6 +12,8 @@ class DeckDetails extends Component {
   };
 
   render() {
+    console.log(this.props);
+    const { deck } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.cardTitleContainer}>
@@ -42,8 +44,11 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     alignItems: "center"
   },
+  questionCount: {
+    color: "darkgray"
+  },
   cardTextMain: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "700"
   },
   cardCountText: {},
@@ -92,7 +97,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(decks, { navigation }) {
   const { title } = navigation.state.params;
   return {
-    deck: decks[title]
+    deck: decks[title],
+    decks
   };
 }
 
