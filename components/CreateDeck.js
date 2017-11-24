@@ -62,7 +62,6 @@ class CreateDeck extends Component {
           onChangeText={this.handleChangeText}
           value={this.state.title}
         />
-        {/* <Text style={{ padding: 20 }}>You typed: {this.state.title}</Text> */}
         <View style={styles.secondaryButton}>
           <TouchableOpacity onPress={this.onSubmit}>
             <Text style={styles.secondaryButtonText}>Submit</Text>

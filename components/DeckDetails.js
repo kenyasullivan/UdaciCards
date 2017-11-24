@@ -24,7 +24,7 @@ class DeckDetails extends Component {
           <Text
             style={styles.primaryButtonText}
             onPress={() =>
-              this.props.navigation.navigate("CreateCard", { title })
+              this.props.navigation.navigate("CreateCard", { deck: deck.title })
             }
           >
             {" "}

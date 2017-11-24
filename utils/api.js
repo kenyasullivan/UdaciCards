@@ -25,11 +25,13 @@ export function saveDeckTitle(title) {
 }
 
 export function addCardToDeck(title, card) {
-  getDecks().then(decks => {
-    const deck = decks[title];
-    deck.cards.push(card);
-    return saveDeckTitle({ [title]: deck });
-  });
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then(JSON.parse)
+    .then(decks => {
+      const deck = decks[title];
+      deck.questions.push(card);
+      return saveDeckTitle({ [title]: deck });
+    });
 }
 
 // getDecks: return all of the decks along with their titles, questions, and answers.

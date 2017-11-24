@@ -20,8 +20,8 @@ function decks(state = {}, action) {
       return {
         ...state,
         [action.title]: {
-          ...action[action.title],
-          questions: [...state[action.title].cards, action.card]
+          ...state[action.title],
+          questions: [...state[action.title].questions, action.card]
         }
       };
     default:
