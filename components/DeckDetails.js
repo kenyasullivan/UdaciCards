@@ -12,7 +12,6 @@ class DeckDetails extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { deck } = this.props;
     return (
       <View style={styles.container}>
@@ -25,7 +24,8 @@ class DeckDetails extends Component {
           <Text
             style={styles.primaryButtonText}
             onPress={() =>
-              this.props.navigation.navigate("CreateCard", { title })}
+              this.props.navigation.navigate("CreateCard", { title })
+            }
           >
             {" "}
             Add A Card{" "}
