@@ -22,7 +22,14 @@ class DeckDetails extends Component {
         </View>
         <View />
         <View style={styles.primaryButton}>
-          <Text style={styles.primaryButtonText}> Add A Card </Text>
+          <Text
+            style={styles.primaryButtonText}
+            onPress={() =>
+              this.props.navigation.navigate("CreateCard", { title })}
+          >
+            {" "}
+            Add A Card{" "}
+          </Text>
         </View>
         <View style={styles.secondaryButton}>
           <Text style={styles.secondaryButtonText}> Start Quiz</Text>

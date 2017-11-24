@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity
+  // AsyncStorage
 } from "react-native";
 import { connect } from "react-redux";
 import { getDecks } from "../utils/api";
@@ -14,6 +15,7 @@ import Deck from "./Deck";
 
 class DeckList extends Component {
   componentDidMount() {
+    // AsyncStorage.clear();
     getDecks().then(decks => this.props.dispatch(receiveDeckList(decks)));
   }
 
@@ -35,7 +37,7 @@ class DeckList extends Component {
         {Object.keys(decks).map(title => {
           const deck = this.props.decks[title];
           return (
-            <View key={title}>
+            <View key={title} style={styles.grid}>
               <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate("DeckDetails", { title })}
@@ -51,6 +53,11 @@ class DeckList extends Component {
 }
 
 const styles = StyleSheet.create({
+  grid: {
+    flex: 1,
+    flexWrap: "wrap",
+    flexDirection: "row"
+  },
   emptyListContainer: {
     flex: 1,
     alignItems: "center",
