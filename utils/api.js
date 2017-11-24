@@ -12,13 +12,22 @@ export function getDeck(id) {
   return decks[id];
 }
 
-export function saveDeckTitle(deck) {
-  return AsyncStorage.mergeItem(
-    DECKS_STORAGE_KEY,
-    JSON.stringify({
-      [deck.title]: deck
-    })
-  );
+export function saveDeckTitle(title) {
+  // return AsyncStorage.mergeItem(
+  //   DECKS_STORAGE_KEY,
+  //   JSON.stringify({
+  //     [deck.title]: deck
+  //   })
+  // );
+  getDecks().then(decks => {
+    if (!decks[title]) {
+      decks[title] = {
+        title: title,
+        questions: []
+      };
+      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
+    }
+  });
 }
 
 export function addCardToDeck(title, card) {

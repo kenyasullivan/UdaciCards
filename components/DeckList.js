@@ -15,7 +15,7 @@ import Deck from "./Deck";
 
 class DeckList extends Component {
   componentDidMount() {
-    // AsyncStorage.clear();
+    // AsyncStorage.clear(); //clear AsyncStorage
     getDecks().then(decks => this.props.dispatch(receiveDeckList(decks)));
   }
 
@@ -40,7 +40,8 @@ class DeckList extends Component {
             <View key={title} style={styles.grid}>
               <TouchableOpacity
                 onPress={() =>
-                  this.props.navigation.navigate("DeckDetails", { title })}
+                  this.props.navigation.navigate("DeckDetails", { title })
+                }
               >
                 <Deck deck={deck} />
               </TouchableOpacity>
