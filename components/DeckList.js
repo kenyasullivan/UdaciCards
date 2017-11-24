@@ -33,7 +33,12 @@ class DeckList extends Component {
     }
 
     return (
-      <ScrollView style={{ backgroundColor: "white" }}>
+      <ScrollView
+        contentContainerStyle={{
+          backgroundColor: "white",
+          flexWrap: "wrap"
+        }}
+      >
         {Object.keys(decks).map(title => {
           const deck = this.props.decks[title];
           return (
