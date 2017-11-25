@@ -25,13 +25,18 @@ export function saveDeckTitle(title) {
 }
 
 export function addCardToDeck(title, card) {
-  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
-    .then(JSON.parse)
-    .then(decks => {
-      const deck = decks[title];
-      deck.questions.push(card);
-      return saveDeckTitle({ [title]: deck });
-    });
+  // return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+  //   .then(JSON.parse)
+  //   .then(decks => {
+  //     const deck = decks[title];
+  //     deck.questions.push(card);
+  //     return saveDeckTitle({ [title]: deck });
+  //   });
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(result => {
+    const data = JSON.parse(result);
+    data[title].questions.push(card);
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data));
+  });
 }
 
 // getDecks: return all of the decks along with their titles, questions, and answers.

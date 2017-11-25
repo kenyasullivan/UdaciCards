@@ -35,8 +35,7 @@ class DeckList extends Component {
     return (
       <ScrollView
         contentContainerStyle={{
-          backgroundColor: "white",
-          flexWrap: "wrap"
+          backgroundColor: "white"
         }}
       >
         {Object.keys(decks).map(title => {

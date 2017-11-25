@@ -7,7 +7,9 @@ const Deck = props => {
     <View style={styles.container}>
       <View style={styles.card} />
       <View>
-        <Text style={styles.cardMeta}>{props.deck.title}</Text>
+        <Text style={styles.cardMeta}>
+          {props.deck.title.toString()} ({props.deck.questions.length.toString()})
+        </Text>
       </View>
     </View>
   );
@@ -17,7 +19,7 @@ const width = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   container: {
-    width: width / 2 - 15,
+    width: width / 2 - 20,
     height: 200,
     backgroundColor: "#fff",
     marginLeft: 10,
