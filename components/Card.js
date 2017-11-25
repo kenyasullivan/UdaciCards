@@ -41,6 +41,7 @@ class Card extends Component {
     }
   }
   render() {
+    console.log("Cards:", this.props.card);
     const frontAnimatedStyle = {
       transform: [{ rotateY: this.frontInterpolate }]
     };
@@ -52,35 +53,19 @@ class Card extends Component {
     return (
       <View style={styles.container}>
         <View>
-          <TouchableOpacity onPress={() => this.flipCard()}>
-            <Text style={styles.flipText}>Flip Card</Text>
-          </TouchableOpacity>
+          <Text style={styles.flipText}>Question 1 of 2</Text>
         </View>
-        <View>
+        <TouchableOpacity onPress={() => this.flipCard()}>
           <Animated.View style={[styles.flipCard, frontAnimatedStyle]}>
-            <Text> Front </Text>
+            <Text style={styles.cardText}> {this.props.card.question} </Text>
           </Animated.View>
 
           <Animated.View
             style={[styles.flipCard, styles.flipCardBack, backAnimatedStyle]}
           >
-            <Text> Back </Text>
+            <Text style={styles.cardTextBack}> {this.props.card.answer} </Text>
           </Animated.View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.secondaryButton}
-            onPress={console.log("Correct")}
-          >
-            <Text style={styles.secondaryButtonText}>Correct</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.secondaryButton}
-            onPress={console.log("InCorrect")}
-          >
-            <Text style={styles.secondaryButtonText}>Incorrect</Text>
-          </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -97,13 +82,13 @@ const styles = StyleSheet.create({
     width: width - 40,
     height: 200,
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 2,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
     backfaceVisibility: "hidden",
     borderColor: "#0188D0",
-    marginBottom: 20
+    marginBottom: 40
   },
   flipCardBack: {
     backgroundColor: "#0188D0",
@@ -122,7 +107,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderWidth: 1,
     borderColor: "#0188D0",
-    // flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     paddingLeft: 20,
@@ -142,7 +126,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#0188D0",
     borderWidth: 1,
     borderColor: "#0188D0",
-    // flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     paddingLeft: 20,
@@ -155,8 +138,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600"
   },
-  buttonContainer: {
-    flexDirection: "row"
+
+  cardText: {
+    fontWeight: "500",
+    fontSize: 16
+  },
+  cardTextBack: {
+    fontWeight: "500",
+    fontSize: 16,
+    color: "#fff"
   }
 });
 

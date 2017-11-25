@@ -30,7 +30,6 @@ class CreateCard extends Component {
   onSubmit = () => {
     const { question, answer } = this.state;
     const { deck } = this.props;
-    console.log(deck);
     if (!question) {
       Alert.alert("Please enter a question");
       return;
