@@ -32,7 +32,15 @@ class DeckDetails extends Component {
           </Text>
         </View>
         <View style={styles.secondaryButton}>
-          <Text style={styles.secondaryButtonText}> Start Quiz</Text>
+          <Text
+            style={styles.secondaryButtonText}
+            onPress={() =>
+              this.props.navigation.navigate("Quiz", { deck: deck.title })
+            }
+          >
+            {" "}
+            Start Quiz
+          </Text>
         </View>
       </View>
     );
