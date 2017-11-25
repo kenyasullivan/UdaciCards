@@ -33,15 +33,11 @@ class DeckList extends Component {
     }
 
     return (
-      <ScrollView
-        contentContainerStyle={{
-          backgroundColor: "white"
-        }}
-      >
+      <ScrollView contentContainerStyle={styles.grid}>
         {Object.keys(decks).map(title => {
           const deck = this.props.decks[title];
           return (
-            <View key={title} style={styles.grid}>
+            <View key={title}>
               <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate("DeckDetails", { title })
@@ -59,9 +55,10 @@ class DeckList extends Component {
 
 const styles = StyleSheet.create({
   grid: {
-    flex: 1,
+    backgroundColor: "white",
+    flexDirection: "row",
     flexWrap: "wrap",
-    flexDirection: "row"
+    flex: 1
   },
   emptyListContainer: {
     flex: 1,

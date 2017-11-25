@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 1,
     borderRadius: 4,
-    borderColor: "#DDD"
+    borderColor: "#DDD",
+    flexDirection: "column"
   },
   card: {
     backgroundColor: "#0188D0",
