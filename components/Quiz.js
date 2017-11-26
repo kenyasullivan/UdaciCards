@@ -20,7 +20,9 @@ class Quiz extends Component {
     const length = this.props.deck.questions.length;
     const { index } = this.state;
     if (index === length - 1) {
-      this.setState({ complete: true });
+      this.setState(state => {
+        return { complete: true, answers: this.state.answers + 1 };
+      });
     } else {
       this.setState(state => {
         return {
@@ -32,9 +34,13 @@ class Quiz extends Component {
   }
 
   wrongAnswer() {
-    this.setState(state => {
-      return { index: state["index"] + 1 };
-    });
+    const length = this.props.deck.questions.length;
+    const { index } = this.state;
+    if (index === length - 1) {
+      this.setState(state => {
+        return { complete: true, answers: this.state.answers + 0 };
+      });
+    }
   }
 
   resetQuiz = () => {
@@ -45,6 +51,7 @@ class Quiz extends Component {
     const { deck } = this.props;
     const { index, answers, complete } = this.state;
     const questions = this.props.deck.questions;
+    const score = Math.floor(answers / questions.length * 100);
 
     if (!questions) {
       return (
@@ -54,56 +61,56 @@ class Quiz extends Component {
       );
     }
 
-    if (!this.state.complete) {
-      return (
-        <View style={styles.container}>
+    return (
+      <View style={styles.container}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "flex-start"
+          }}
+        >
+          <Text style={styles.scoreText}>Score:{score}</Text>
           <View
             style={{
               flex: 1,
               flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "flex-start"
+              justifyContent: "flex-end",
+              alignItems: "flex-end"
             }}
           >
             <Text style={styles.scoreText}>
-              Score:{Math.floor(answers / questions.length * 100)}
+              Question {this.state.index + 1} of {questions.length}
             </Text>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                alignItems: "flex-end"
-              }}
-            >
-              <Text style={styles.scoreText}>
-                Question {this.state.index + 1} of {questions.length}
-              </Text>
-            </View>
-          </View>
-          <View>
-            <TouchableOpacity onPress={() => this.resetQuiz()}>
-              <Text>Reset Quiz</Text>
-            </TouchableOpacity>
-            <Card card={questions[index]} />
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.secondaryButton}
-              onPress={() => this.correctAnswer()}
-            >
-              <Text style={styles.secondaryButtonText}>Correct</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.primaryButton}
-              onPress={() => this.wrongAnswer()}
-            >
-              <Text style={styles.primaryButtonText}>Incorrect</Text>
-            </TouchableOpacity>
           </View>
         </View>
-      );
-    }
+        <View>
+          <TouchableOpacity onPress={() => this.resetQuiz()}>
+            <Text>Reset Quiz</Text>
+          </TouchableOpacity>
+          {questions && index <= questions.length ? (
+            <Card card={questions[index]} />
+          ) : (
+            " "
+          )}
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.secondaryButton}
+            onPress={() => this.correctAnswer()}
+          >
+            <Text style={styles.secondaryButtonText}>Correct</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.primaryButton}
+            onPress={() => this.wrongAnswer()}
+          >
+            <Text style={styles.primaryButtonText}>Incorrect</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
   }
 }
 
