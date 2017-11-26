@@ -8,6 +8,7 @@ import {
   Dimensions
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { blue, white } from "../utils/colors";
 
 class Card extends Component {
   componentWillMount() {

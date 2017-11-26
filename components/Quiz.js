@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import Card from "../components/Card";
 import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
+import { blue, white } from "../utils/colors";
 
 class Quiz extends Component {
   static navigationOptions = ({ navigation }) => {
