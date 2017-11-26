@@ -51,10 +51,7 @@ class Card extends Component {
     };
 
     return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.flipText}>Question 1 of 2</Text>
-        </View>
+      <View>
         <TouchableOpacity onPress={() => this.flipCard()}>
           <Animated.View style={[styles.flipCard, frontAnimatedStyle]}>
             <Text style={styles.cardText}> {this.props.card.question} </Text>
@@ -72,12 +69,6 @@ class Card extends Component {
 }
 const width = Dimensions.get("window").width;
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff"
-  },
   flipCard: {
     width: width - 40,
     height: 200,
@@ -100,45 +91,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#0188D0"
   },
-  primaryButton: {
-    borderRadius: 5,
-    height: 50,
-    width: 150,
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: "#0188D0",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingLeft: 20,
-    paddingRight: 20,
-    margin: 10
-  },
-  primaryButtonText: {
-    alignSelf: "center",
-    color: "#0188D0",
-    fontSize: 16,
-    fontWeight: "600"
-  },
-  secondaryButton: {
-    borderRadius: 5,
-    height: 50,
-    width: 150,
-    backgroundColor: "#0188D0",
-    borderWidth: 1,
-    borderColor: "#0188D0",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingLeft: 20,
-    paddingRight: 20,
-    margin: 10
-  },
-  secondaryButtonText: {
-    alignSelf: "center",
-    color: "white",
-    fontSize: 16,
-    fontWeight: "600"
-  },
-
   cardText: {
     fontWeight: "500",
     fontSize: 16

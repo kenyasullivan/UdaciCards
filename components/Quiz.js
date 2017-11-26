@@ -53,12 +53,32 @@ class Quiz extends Component {
 
     return (
       <View style={styles.container}>
-        <View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "flex-start"
+          }}
+        >
           <Text style={styles.scoreText}>
             Score:{answers / questions.length * 100}{" "}
           </Text>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              alignItems: "flex-end"
+            }}
+          >
+            <Text style={styles.scoreText}>Question 1 of 2</Text>
+          </View>
         </View>
         <View>
+          <TouchableOpacity onPress={console.log("Rset")}>
+            <Text>Reset Quiz</Text>
+          </TouchableOpacity>
           <Card card={this.props.deck.questions[index]} />
         </View>
         <View style={styles.buttonContainer}>
@@ -84,17 +104,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
     backgroundColor: "#fff"
   },
   scoreText: {
-    marginTop: 40,
-    fontSize: 20,
-    fontWeight: "600"
+    marginTop: 20,
+    fontSize: 16,
+    fontWeight: "600",
+    paddingLeft: 20,
+    paddingRight: 20
   },
   buttonContainer: {
-    // flexDirection: "row"
-    marginBottom: 40
+    // flexDirection: "row",
+    marginBottom: 100
   },
   primaryButton: {
     borderRadius: 5,
