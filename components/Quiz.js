@@ -75,7 +75,7 @@ class Quiz extends Component {
     const { index, answers, complete } = this.state;
     const questions = this.props.deck.questions;
     const score = Math.floor(answers / questions.length * 100);
-    console.log(this.props);
+
     if (complete) {
       return (
         <View style={styles.container}>
