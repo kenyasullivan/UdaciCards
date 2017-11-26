@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   scoreText: {
     marginTop: 10,
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: "600",
     paddingLeft: 20,
     paddingRight: 20
@@ -215,6 +215,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 20,
     paddingBottom: 20,
+    marginTop: 10,
     alignSelf: "center"
   }
 });
