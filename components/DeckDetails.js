@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { white, blue, darkgray, lightgray, lightblue } from "../utils/colors";
 import Deck from "./Deck";
@@ -13,6 +13,8 @@ class DeckDetails extends Component {
 
   render() {
     const { deck } = this.props;
+    const hasQuestions = Boolean(deck.questions && deck.questions.length);
+
     return (
       <View style={styles.container}>
         <View style={styles.cardTitleContainer}>
@@ -20,7 +22,7 @@ class DeckDetails extends Component {
           <Text> {deck.questions.length} Cards</Text>
         </View>
         <View />
-        <View style={styles.primaryButton}>
+        <TouchableOpacity style={styles.primaryButton}>
           <Text
             style={styles.primaryButtonText}
             onPress={() =>
@@ -30,18 +32,17 @@ class DeckDetails extends Component {
             {" "}
             Add A Card{" "}
           </Text>
-        </View>
-        <View style={styles.secondaryButton}>
-          <Text
-            style={styles.secondaryButtonText}
-            onPress={() =>
-              this.props.navigation.navigate("Quiz", { deck: deck.title })
-            }
-          >
-            {" "}
-            Start Quiz
-          </Text>
-        </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={!hasQuestions ? styles.disabledButton : styles.secondaryButton}
+          onPress={() =>
+            this.props.navigation.navigate("Quiz", { deck: deck.title })
+          }
+          disabled={!hasQuestions}
+          activeOpacity={!hasQuestions ? 0.5 : 1}
+        >
+          <Text style={styles.secondaryButtonText}> Start Quiz</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -106,6 +107,20 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "600"
+  },
+  disabledButton: {
+    borderRadius: 5,
+    height: 50,
+    width: 150,
+    backgroundColor: "#0188D075",
+    borderWidth: 1,
+    borderColor: "#0188D0",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 20,
+    paddingRight: 20,
+    margin: 10
   }
 });
 
