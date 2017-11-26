@@ -63,11 +63,12 @@ class CreateDeck extends Component {
           value={this.state.title}
           underlineColorAndroid="transparent"
         />
-        <View style={styles.secondaryButton}>
-          <TouchableOpacity onPress={this.onSubmit}>
-            <Text style={styles.secondaryButtonText}>Submit</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={styles.secondaryButton}
+          onPress={this.onSubmit}
+        >
+          <Text style={styles.secondaryButtonText}>Submit</Text>
+        </TouchableOpacity>
       </View>
     );
   }
