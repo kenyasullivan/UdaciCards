@@ -12,43 +12,38 @@ class Quiz extends Component {
 
   state = {
     index: 0,
-    answers: null,
-    completed: false,
-    score: 0,
-    questions: []
+    answers: 0,
+    complete: false
   };
 
   correctAnswer() {
-    this.setState({ answer: true, score: this.state.score + 1 });
-  }
-
-  wrongAnswer() {
-    this.setState({ answer: false });
-  }
-
-  nextQuestion() {
     const length = this.props.deck.questions.length;
     const { index } = this.state;
     if (index === length - 1) {
-      this.setState({
-        complete: true
-      });
+      this.setState({ complete: true });
     } else {
-      this.setState({
-        index: this.state.index + 1,
-        answer: null
+      this.setState(state => {
+        return {
+          index: state["index"] + 1,
+          answers: state["answers"] + 1
+        };
       });
     }
   }
+
+  wrongAnswer() {
+    this.setState(state => {
+      return { index: state["index"] + 1 };
+    });
+  }
+
   resetQuiz = () => {
-    this.setState(() => ({ index: 0, results: [] }));
+    this.setState(() => ({ index: 0, answers: 0, complete: false }));
   };
 
   render() {
-    console.log(this.props);
     const { deck } = this.props;
-    const { index, answers } = this.state;
-    const percentage = this.state.score / this.props.deck.questions.length;
+    const { index, answers, complete } = this.state;
     const questions = this.props.deck.questions;
 
     if (!questions) {
@@ -59,54 +54,56 @@ class Quiz extends Component {
       );
     }
 
-    return (
-      <View style={styles.container}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "flex-start"
-          }}
-        >
-          <Text style={styles.scoreText}>
-            Score:{answers / questions.length * 100}{" "}
-          </Text>
+    if (!this.state.complete) {
+      return (
+        <View style={styles.container}>
           <View
             style={{
               flex: 1,
               flexDirection: "row",
-              justifyContent: "flex-end",
-              alignItems: "flex-end"
+              justifyContent: "flex-start",
+              alignItems: "flex-start"
             }}
           >
             <Text style={styles.scoreText}>
-              Question {this.state.index + 1} of {questions.length}
+              Score:{Math.floor(answers / questions.length * 100)}
             </Text>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "flex-end"
+              }}
+            >
+              <Text style={styles.scoreText}>
+                Question {this.state.index + 1} of {questions.length}
+              </Text>
+            </View>
+          </View>
+          <View>
+            <TouchableOpacity onPress={() => this.resetQuiz()}>
+              <Text>Reset Quiz</Text>
+            </TouchableOpacity>
+            <Card card={questions[index]} />
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.secondaryButton}
+              onPress={() => this.correctAnswer()}
+            >
+              <Text style={styles.secondaryButtonText}>Correct</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.primaryButton}
+              onPress={() => this.wrongAnswer()}
+            >
+              <Text style={styles.primaryButtonText}>Incorrect</Text>
+            </TouchableOpacity>
           </View>
         </View>
-        <View>
-          <TouchableOpacity onPress={console.log("Rset")}>
-            <Text>Reset Quiz</Text>
-          </TouchableOpacity>
-          <Card card={this.props.deck.questions[index]} />
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.secondaryButton}
-            onPress={console.log("Correct")}
-          >
-            <Text style={styles.secondaryButtonText}>Correct</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.primaryButton}
-            onPress={console.log("InCorrect")}
-          >
-            <Text style={styles.primaryButtonText}>Incorrect</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
+      );
+    }
   }
 }
 
