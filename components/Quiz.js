@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import Card from "../components/Card";
+import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
 
 class Quiz extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -15,6 +16,10 @@ class Quiz extends Component {
     answers: 0,
     complete: false
   };
+
+  componentDidMount() {
+    clearLocalNotification().then(setLocalNotification);
+  }
 
   correctAnswer() {
     const length = this.props.deck.questions.length;
