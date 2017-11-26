@@ -42,7 +42,6 @@ class Card extends Component {
     }
   }
   render() {
-    console.log("Cards:", this.props.card);
     const frontAnimatedStyle = {
       transform: [{ rotateY: this.frontInterpolate }]
     };

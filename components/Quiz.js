@@ -26,8 +26,8 @@ class Quiz extends Component {
     } else {
       this.setState(state => {
         return {
-          index: state["index"] + 1,
-          answers: state["answers"] + 1
+          index: this.state.index + 1,
+          answers: this.state.answers + 1
         };
       });
     }
@@ -38,20 +38,64 @@ class Quiz extends Component {
     const { index } = this.state;
     if (index === length - 1) {
       this.setState(state => {
-        return { complete: true, answers: this.state.answers + 0 };
+        return { complete: true, answers: this.state.answers };
+      });
+    } else {
+      this.setState(state => {
+        return { index: this.state.index + 1 };
       });
     }
   }
 
-  resetQuiz = () => {
+  resetQuiz() {
     this.setState(() => ({ index: 0, answers: 0, complete: false }));
-  };
+  }
+
+  scoreStatus(score) {
+    if (score === 100) {
+      return "Great!";
+    }
+    if (score >= 70) {
+      return "Almost There!";
+    }
+    if (score >= 50) {
+      return "Try Again";
+    }
+    return "Time to get started";
+  }
 
   render() {
     const { deck } = this.props;
     const { index, answers, complete } = this.state;
     const questions = this.props.deck.questions;
     const score = Math.floor(answers / questions.length * 100);
+    console.log(this.props);
+    if (complete) {
+      return (
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.scoreText}>Score:{score}%</Text>
+            <View style={{ marginBottom: 20 }}>
+              <Text style={styles.scoreStatus}>{this.scoreStatus(score)}</Text>
+            </View>
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.secondaryButton}
+              onPress={() => this.resetQuiz()}
+            >
+              <Text style={styles.secondaryButtonText}>Reset Quiz</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.primaryButton}
+              onPress={() => this.props.navigation.goBack()}
+            >
+              <Text style={styles.primaryButtonText}>Back to Deck</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      );
+    }
 
     if (!questions) {
       return (
@@ -63,30 +107,6 @@ class Quiz extends Component {
 
     return (
       <View style={styles.container}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "flex-start"
-          }}
-        >
-          <Text style={styles.scoreText}>Score:{score}%</Text>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              justifyContent: "flex-end",
-              alignItems: "flex-end"
-            }}
-          />
-          <TouchableOpacity
-            style={styles.resetButton}
-            onPress={() => this.resetQuiz()}
-          >
-            <Text style={styles.resetButtonText}>Reset Quiz</Text>
-          </TouchableOpacity>
-        </View>
         <View>
           <Text style={styles.questionMeta}>
             Question {this.state.index + 1} of {questions.length}
@@ -120,19 +140,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     backgroundColor: "#fff"
   },
   scoreText: {
-    marginTop: 20,
-    fontSize: 16,
+    marginTop: 10,
+    fontSize: 24,
     fontWeight: "600",
     paddingLeft: 20,
     paddingRight: 20
   },
   buttonContainer: {
     // flexDirection: "row",
-    marginBottom: 60
+    marginBottom: 100
   },
   primaryButton: {
     borderRadius: 5,
@@ -173,17 +193,11 @@ const styles = StyleSheet.create({
     fontWeight: "600"
   },
   resetButton: {
-    // borderRadius: 5,
-    // height: 30,
-    // width: 120,
-    // backgroundColor: "red",
-    // borderWidth: 1,
-    // borderColor: "red",
     justifyContent: "center",
     alignItems: "center",
     paddingLeft: 20,
     paddingRight: 20,
-    marginTop: 20
+    marginTop: 10
   },
   resetButtonText: {
     alignSelf: "center",
@@ -193,6 +207,14 @@ const styles = StyleSheet.create({
   },
   questionMeta: {
     fontSize: 12,
+    alignSelf: "center",
+    marginTop: 60
+  },
+  scoreStatus: {
+    color: "#39BC57",
+    fontWeight: "500",
+    fontSize: 20,
+    paddingBottom: 20,
     alignSelf: "center"
   }
 });
