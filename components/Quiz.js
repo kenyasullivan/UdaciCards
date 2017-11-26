@@ -12,36 +12,44 @@ class Quiz extends Component {
 
   state = {
     index: 0,
-    answers: 0,
-    completed: false
+    answers: null,
+    completed: false,
+    score: 0,
+    questions: []
   };
 
-  answerCorrect() {
-    this.setState(state => {
-      return {
-        index: state["index"] + 1,
-        answers: state["answers"] + 1
-      };
-    });
+  correctAnswer() {
+    this.setState({ answer: true, score: this.state.score + 1 });
   }
 
-  answerIncorrect() {
-    this.setState(state => {
-      return {
-        ...state,
-        index: state["index"] + 1
-      };
-    });
+  wrongAnswer() {
+    this.setState({ answer: false });
   }
 
+  nextQuestion() {
+    const length = this.props.deck.questions.length;
+    const { index } = this.state;
+    if (index === length - 1) {
+      this.setState({
+        complete: true
+      });
+    } else {
+      this.setState({
+        index: this.state.index + 1,
+        answer: null
+      });
+    }
+  }
   resetQuiz = () => {
     this.setState(() => ({ index: 0, results: [] }));
   };
 
   render() {
+    console.log(this.props);
     const { deck } = this.props;
-    const questions = this.props.deck.questions;
     const { index, answers } = this.state;
+    const percentage = this.state.score / this.props.deck.questions.length;
+    const questions = this.props.deck.questions;
 
     if (!questions) {
       return (
@@ -72,7 +80,9 @@ class Quiz extends Component {
               alignItems: "flex-end"
             }}
           >
-            <Text style={styles.scoreText}>Question 1 of 2</Text>
+            <Text style={styles.scoreText}>
+              Question {this.state.index + 1} of {questions.length}
+            </Text>
           </View>
         </View>
         <View>
