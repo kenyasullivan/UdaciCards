@@ -23,7 +23,7 @@ Native and Redux. This application is the the third project for
 
 ## Screenshots
 
-[https://github.com/kenyasullivan/UdaciCards/blob/master/screenshots/home.png]
+![](https://s3-us-west-2.amazonaws.com/stackpoets-udacicards/screenshots/home.png)
 
 ## Available Scripts
 
