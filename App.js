@@ -9,7 +9,6 @@ import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { blue, white } from "./utils/colors";
 import { setLocalNotification } from "./utils/helpers";
 
-import Header from "./components/Header";
 import DeckList from "./components/DeckList";
 import CreateDeck from "./components/CreateDeck";
 import DeckDetails from "./components/DeckDetails";
