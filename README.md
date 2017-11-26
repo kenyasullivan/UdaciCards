@@ -1,8 +1,7 @@
 # UdaciCards: A React Native Mobile Flashcards App
 
-About
----- 
-This application is  the the third project for [Udacity's](httpd://www.udacity.com) [React Developer Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019). UdaciCards is a mobile flashcard app for IOS and Android, developed using React Native and Redux. 
+UdaciCards is a mobile flashcard app for IOS and Android, developed using React Native and Redux. 
+This application is  the the third project for [Udacity's](httpd://www.udacity.com) [React Developer Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019). 
 
 ## Table of Contents
 
