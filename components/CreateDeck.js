@@ -61,6 +61,7 @@ class CreateDeck extends Component {
           placeholder="Enter your deck title"
           onChangeText={this.handleChangeText}
           value={this.state.title}
+          underlineColorAndroid="transparent"
         />
         <View style={styles.secondaryButton}>
           <TouchableOpacity onPress={this.onSubmit}>

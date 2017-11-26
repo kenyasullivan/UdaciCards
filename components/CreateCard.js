@@ -66,13 +66,16 @@ class CreateCard extends Component {
           maxLength={50}
           placeholder="Question"
           onChangeText={this.handleQuestionText}
+          underlineColorAndroid="transparent"
         />
         <TextInput
           style={styles.input}
           maxLength={255}
           multiline={true}
+          numberOfLines={4}
           placeholder="Answer"
           onChangeText={this.handleAnswerText}
+          underlineColorAndroid="transparent"
         />
         <View style={styles.secondaryButton}>
           <TouchableOpacity onPress={this.onSubmit}>

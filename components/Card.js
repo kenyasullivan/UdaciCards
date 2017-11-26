@@ -25,6 +25,15 @@ class Card extends Component {
       inputRange: [0, 180],
       outputRange: ["180deg", "360deg"]
     });
+    this.frontOpacity = this.animatedValue.interpolate({
+      inputRange: [89, 90],
+      outputRange: [1, 0]
+    });
+
+    this.backOpacity = this.animatedValue.interpolate({
+      inputRange: [89, 90],
+      outputRange: [0, 1]
+    });
   }
 
   flipCard() {
@@ -44,11 +53,13 @@ class Card extends Component {
   }
   render() {
     const frontAnimatedStyle = {
-      transform: [{ rotateY: this.frontInterpolate }]
+      transform: [{ rotateY: this.frontInterpolate }],
+      opacity: this.frontOpacity
     };
 
     const backAnimatedStyle = {
-      transform: [{ rotateY: this.backInterpolate }]
+      transform: [{ rotateY: this.backInterpolate }],
+      opacity: this.backOpacity
     };
 
     return (
