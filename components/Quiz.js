@@ -71,7 +71,7 @@ class Quiz extends Component {
             alignItems: "flex-start"
           }}
         >
-          <Text style={styles.scoreText}>Score:{score}</Text>
+          <Text style={styles.scoreText}>Score:{score}%</Text>
           <View
             style={{
               flex: 1,
@@ -79,16 +79,18 @@ class Quiz extends Component {
               justifyContent: "flex-end",
               alignItems: "flex-end"
             }}
+          />
+          <TouchableOpacity
+            style={styles.resetButton}
+            onPress={() => this.resetQuiz()}
           >
-            <Text style={styles.scoreText}>
-              Question {this.state.index + 1} of {questions.length}
-            </Text>
-          </View>
+            <Text style={styles.resetButtonText}>Reset Quiz</Text>
+          </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => this.resetQuiz()}>
-            <Text>Reset Quiz</Text>
-          </TouchableOpacity>
+          <Text style={styles.questionMeta}>
+            Question {this.state.index + 1} of {questions.length}
+          </Text>
           {questions && index <= questions.length ? (
             <Card card={questions[index]} />
           ) : (
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     // flexDirection: "row",
-    marginBottom: 100
+    marginBottom: 60
   },
   primaryButton: {
     borderRadius: 5,
@@ -169,6 +171,29 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "600"
+  },
+  resetButton: {
+    // borderRadius: 5,
+    // height: 30,
+    // width: 120,
+    // backgroundColor: "red",
+    // borderWidth: 1,
+    // borderColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginTop: 20
+  },
+  resetButtonText: {
+    alignSelf: "center",
+    color: "#0188D0",
+    fontSize: 16,
+    fontWeight: "600"
+  },
+  questionMeta: {
+    fontSize: 12,
+    alignSelf: "center"
   }
 });
 function mapStateToProps(decks, { navigation }) {
