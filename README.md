@@ -22,7 +22,9 @@ Native and Redux. This application is the the third project for
 3. Follow on screen instructions to run the application
 
 ## Screenshots
-<img src="screenshots/home.png" >
+<img src="screenshots/udacicards-1.png" >
+<img src="screenshots/udacicards-2.png" >
+
 
 ## Available Scripts
 
