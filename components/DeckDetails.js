@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import { white, blue, darkgray, lightgray, lightblue } from "../utils/colors";
+import { white, darkgray } from "../utils/colors";
 import Deck from "./Deck";
 
 class DeckDetails extends Component {

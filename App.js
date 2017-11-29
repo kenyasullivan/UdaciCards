@@ -6,7 +6,7 @@ import reducer from "./reducers";
 import { Constants } from "expo";
 import { TabNavigator, StackNavigator, goBack } from "react-navigation";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
-import { blue, white } from "./utils/colors";
+import { ublue, white } from "./utils/colors";
 import { setLocalNotification } from "./utils/helpers";
 
 import DeckList from "./components/DeckList";
@@ -48,15 +48,15 @@ const Tabs = TabNavigator(
     navigationOptions: {
       title: "Decks",
       headerStyle: {
-        backgroundColor: blue
+        backgroundColor: ublue
       },
       headerTintColor: white
     },
     tabBarOptions: {
-      activeTintColor: Platform.OS === "ios" ? blue : white,
+      activeTintColor: Platform.OS === "ios" ? ublue : white,
       style: {
         height: 56,
-        backgroundColor: Platform.OS === "ios" ? white : blue,
+        backgroundColor: Platform.OS === "ios" ? white : ublue,
         shadowColor: "rgba(0,0,0,0.24)",
         shadowOffset: {
           width: 0,
@@ -78,7 +78,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: blue
+        backgroundColor: ublue
       },
       headerBackTitle: "Decks"
     }
@@ -88,7 +88,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: blue
+        backgroundColor: ublue
       }
     }
   },
@@ -97,7 +97,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: blue
+        backgroundColor: ublue
       }
     }
   }
@@ -111,7 +111,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{ flex: 1 }}>
-          <UdaciStatusBar backgroundColor={blue} barStyle="light-content" />
+          <UdaciStatusBar backgroundColor={ublue} barStyle="light-content" />
           <MainNavigator />
         </View>
       </Provider>
