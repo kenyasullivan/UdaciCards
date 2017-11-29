@@ -6,7 +6,8 @@ import {
   View,
   StyleSheet,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView
 } from "react-native";
 import { connect } from "react-redux";
 import { NavigationActions } from "react-navigation";
@@ -59,8 +60,8 @@ class CreateCard extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Add card to deck!</Text>
+      <KeyboardAvoidingView style={styles.container}>
+        <Text style={styles.title}>Add a study card!</Text>
         <TextInput
           style={styles.input}
           maxLength={50}
@@ -69,10 +70,9 @@ class CreateCard extends Component {
           underlineColorAndroid="transparent"
         />
         <TextInput
-          style={styles.input}
-          maxLength={255}
+          style={styles.answerInput}
           multiline={true}
-          numberOfLines={4}
+          numberOfLines={10}
           placeholder="Answer"
           onChangeText={this.handleAnswerText}
           underlineColorAndroid="transparent"
@@ -82,7 +82,7 @@ class CreateCard extends Component {
             <Text style={styles.secondaryButtonText}>Submit</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "500",
     padding: 20,
-    marginTop: 20
+    marginTop: 20,
+    alignSelf: "center"
   },
   input: {
     fontSize: 20,
@@ -106,9 +107,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: Platform.OS === "ios" ? 6 : 2,
     marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 10
+  },
+  answerInput: {
+    fontSize: 20,
+    padding: 10,
+    height: 100,
+    borderColor: lightgray,
+    borderWidth: 1,
+    borderRadius: Platform.OS === "ios" ? 6 : 2,
+    marginLeft: 20,
     marginRight: 20
   },
-
   secondaryButton: {
     borderRadius: 5,
     height: 50,
