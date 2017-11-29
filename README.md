@@ -21,6 +21,9 @@ Native and Redux. This application is the the third project for
 2. Once dependencies are installed run `yarn start`
 3. Follow on screen instructions to run the application
 
+## Screenshots
+<img src="screenshots/home.png" >
+
 ## Available Scripts
 
 In the project directory, you can run:
