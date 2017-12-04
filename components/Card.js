@@ -96,7 +96,7 @@ const width = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   flipCard: {
     width: width - 40,
-    height: 200,
+    height: 400,
     borderWidth: 1,
     borderRadius: 2,
     alignItems: "center",
@@ -126,12 +126,14 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontWeight: "500",
-    fontSize: 16
+    fontSize: 14,
+    padding: 10
   },
   cardTextBack: {
     fontWeight: "500",
-    fontSize: 16,
-    color: "#fff"
+    fontSize: 14,
+    color: "#fff",
+    padding: 10
   }
 });
 

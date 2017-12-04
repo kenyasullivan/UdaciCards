@@ -64,16 +64,16 @@ class CreateCard extends Component {
         <Text style={styles.title}>Add a study card!</Text>
         <TextInput
           style={styles.input}
-          maxLength={50}
-          placeholder="Question"
+          // maxLength={50}
+          placeholder="Study question ..."
           onChangeText={this.handleQuestionText}
           underlineColorAndroid="transparent"
         />
         <TextInput
           style={styles.answerInput}
           multiline={true}
-          numberOfLines={10}
-          placeholder="Answer"
+          numberOfLines={20}
+          placeholder="Answer..."
           onChangeText={this.handleAnswerText}
           underlineColorAndroid="transparent"
         />
